@@ -4,17 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RPS Odin Game</title>
+    <link rel="stylesheet" href="./assets/reset.css" />
+    <link rel="stylesheet" href="./assets/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   </head>
   <body>
     <div class="container">
       <h1 class="title-name">Rock, Paper, Scissors Game</h1>
       <p class="desc">Game kéo búa bao đây!!! Mại zô mại zô</p>
-      <div class="selection">
-        <button class="btn" id="keo" value="keo">Kéo</button>
-        <button class="btn" id="bua" value="bua">Búa</button>
-        <button class="btn" id="bao" value="bao">Bao</button>
+      <div class="selection-button">
+        <button class="btn" id="keo" value="keo"><i class="fa-solid fa-hand-scissors"></i></button>
+        <button class="btn" id="bua" value="bua"><i class="fa-solid fa-hand-fist"></i></button>
+        <button class="btn" id="bao" value="bao"><i class="fa-solid fa-hand"></i></button>
       </div>
+      <button id="restart-btn" style="display: none">
+        Play Again <br />
+        👻👻👻
+      </button>
     </div>
-    <script src="./assets/index.js"></script>
+    <script src="./assets/js/index.js"></script>
   </body>
 </html>
