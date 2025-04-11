@@ -1,3 +1,17 @@
+const sect = document.createElement("section");
+const div = document.createElement("div");
+const pDiv = document.createElement("p");
+const selections = document.createElement("p");
+const h2Score = document.createElement("h2");
+const final = document.createElement("h1");
+div.appendChild(pDiv);
+div.appendChild(selections);
+div.appendChild(h2Score);
+div.appendChild(final);
+sect.appendChild(div);
+const container = document.querySelector(".container");
+container.appendChild(sect);
+
 function getComputerChoice() {
   let computerChoice = Math.floor(Math.random() * 3);
   if (computerChoice === 0) {
@@ -61,37 +75,39 @@ async function playGame() {
     return "computer";
   }
 
-  for (let i = 0; i < 5; i++) {
+  while (humanScore < 5 && computerScore < 5) {
+    // for (let i = 0; i < 5; i++) {
     const computerSelection = getComputerChoice();
     const rawInput = await getHumanChoice(); // wait for human make a choice
     const humanSelection = normalizeCheck(rawInput);
     const result = playRound(humanSelection, computerSelection);
     if (rawInput === null) {
-      console.log("Cancel Game !!! Input value to play rock-paper-scissors");
       return;
     }
-    console.log(` Round ${i}: You choose: ${humanSelection} , computer choose: ${computerSelection}`);
+    selections.textContent = `  You choose: ${humanSelection} , computer choose: ${computerSelection}`;
 
     if (result === "human") {
       humanScore++;
-      console.log("You won a point, lucky i guest");
+      pDiv.textContent = `You won a point, lucky i guest`;
     } else if (result === "computer") {
       computerScore++;
-      console.log("You lose to computer, u suck xD");
+      pDiv.textContent = `You lose to computer, u suck xD`;
     } else if (result === "draw") {
-      console.log("Draw, unlucky no point for anyone");
+      pDiv.textContent = "Draw, unlucky no point for anyone";
     }
-    console.log("--------------");
-    console.log(`Your score: ${humanScore} - Computer score: ${computerScore}`);
-    console.log("--------------");
-  }
+    h2Score.textContent = `Your score: ${humanScore} - Computer score: ${computerScore}`;
 
-  if (humanScore > computerScore) {
-    console.log("Congratulation!!! U a lucky guy <3");
-  } else if (humanScore < computerScore) {
-    console.log("Cant beat the computer huh ? Guest what ? Maybe try again, then u will lose again. XD");
-  } else {
-    console.log("🤝 DRAWWWWWWWWW");
+    // }
+
+    if (humanScore === 5) {
+      final.textContent = "Congratulation!!! U beat the machine <3";
+      console.log("human");
+      break;
+    } else if (computerScore === 5) {
+      final.textContent = "Cant beat the computer huh ? Guest what ? Maybe try again, then u will lose again. XD";
+      console.log("comp");
+      break;
+    }
   }
 }
 playGame();
