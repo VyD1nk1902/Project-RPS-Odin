@@ -10,17 +10,33 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  const humanChoice = prompt("Input your choices - Kéo, búa, bao (scissors, rock, paper)");
-  if (!humanChoice) {
-    return null;
-  } else {
-    return humanChoice.toLowerCase();
-  }
+  // const keo = document.querySelector("#keo");
+  // const bua = document.querySelector("#bua");
+  // const bao = document.querySelector("#bao");
+  // keo.addEventListener("click", (e) => {
+  //   console.log(e.target.id);
+  // });
+  // bua.addEventListener("click", (e) => {
+  //   console.log(e.target.id);
+  // });
+  // bao.addEventListener("click", (e) => {
+  //   console.log(e.target.id);
+  // });
+  // use promise for processing asynchronous
+  return new Promise((resolve) => {
+    const buttons = document.querySelectorAll(".btn");
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const humanChoice = e.target.value;
+        resolve(humanChoice); // call resolve after human click a button to return value
+      });
+    });
+  });
 }
 
 function normalizeCheck(check) {
-  if (check === "búa" || check === "bua") return "rock";
-  if (check === "kéo" || check === "keo") return "scissors";
+  if (check === "bua") return "rock";
+  if (check === "keo") return "scissors";
   if (check === "bao") return "paper";
 }
 
@@ -28,7 +44,7 @@ function normalizeCheck(check) {
 // người chơi chọn -> máy tính chọn -> so sánh các trường hợp và đưa ra thông báo ai win
 // ai win thì sẽ được cộng điểm vào biến tương ứng.
 
-function playGame() {
+async function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
@@ -47,7 +63,7 @@ function playGame() {
 
   for (let i = 0; i < 5; i++) {
     const computerSelection = getComputerChoice();
-    const rawInput = getHumanChoice();
+    const rawInput = await getHumanChoice(); // wait for human make a choice
     const humanSelection = normalizeCheck(rawInput);
     const result = playRound(humanSelection, computerSelection);
     if (rawInput === null) {
