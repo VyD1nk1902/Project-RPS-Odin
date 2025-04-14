@@ -5,21 +5,25 @@ const selections = document.createElement("p");
 const h2Score = document.createElement("h2");
 const final = document.createElement("h1");
 const selectionButton = document.querySelector(".selection-button");
+
+sect.setAttribute("class", "game-log");
+sect.style.display = "none";
+sect.style.opacity = 0;
+sect.style.transition = "opacity 0.5s ease";
+
+div.setAttribute("class", "log-container");
+pDiv.setAttribute("class", "game-stats");
+selections.setAttribute("class", "game-selection");
+final.setAttribute("class", "final");
+
 div.appendChild(pDiv);
 div.appendChild(selections);
 div.appendChild(h2Score);
 div.appendChild(final);
 sect.appendChild(div);
+
 const container = document.querySelector(".container");
 container.appendChild(sect);
-sect.setAttribute("class", "game-log");
-sect.style.display = "none";
-sect.style.opacity = 0;
-sect.style.transition = "opacity 0.5s ease";
-div.setAttribute("class", "log-container");
-pDiv.setAttribute("class", "game-stats");
-selections.setAttribute("class", "game-selection");
-final.setAttribute("class", "final");
 
 function getComputerChoice() {
   let computerChoice = Math.floor(Math.random() * 3);
